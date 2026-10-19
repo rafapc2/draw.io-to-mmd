@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 - `npm run build` — bundles `src/plugin.js` into the single-file plugin `dist/drawio-mermaid.js` (esbuild IIFE; draw.io loads one script, no imports). `dist/` is committed (rebuild it before committing source changes).
-- `npm test` — all tests (`node --test test/`; Node's built-in runner). Single file: `node --test test/core.test.js`; single test: `node --test --test-name-pattern="round trip" test/`.
+- `npm test` — all tests (`node --test test/*.test.js`; Node's built-in runner). Single file: `node --test test/core.test.js`; single test: `node --test --test-name-pattern="round trip" test/*.test.js`.
 - `test/plugin.test.js` rebuilds `dist/` before running, so tests always exercise the real bundle.
 - `scripts/sample-test.sh <file.drawio>` — runs export, round trip, clean (metadata-free) import, Mermaid validation and Chrome screenshots. **Always leave test results in `test-result/`** (the script wipes and recreates it; it does not write a REPORT.md).
 - `npm run build:bin` — `scripts/build-binaries.sh`: standalone executables for 5 targets in `release/` (gitignored) via `bun build --compile` (bun is a devDependency). Released by `.github/workflows/release.yml` on `v*` tags (smoke-tests each binary on its native OS first). Entry point `bin/drawio-mermaid.js` → `src/cli.js` (`to-mmd` / `to-drawio`).

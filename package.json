@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "esbuild src/plugin.js --bundle --format=iife --target=es2017 --outfile=dist/drawio-mermaid.js",
-    "test": "node --test test/",
+    "test": "node --test test/*.test.js",
     "build:bin": "scripts/build-binaries.sh"
   },
   "devDependencies": {
