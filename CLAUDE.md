@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
+Node **22** is the target (`.nvmrc`, `engines`, CI); don't rely on newer Node features.
+
 - `npm run build` — bundles `src/plugin.js` into the single-file plugin `dist/drawio-mermaid.js` (esbuild IIFE; draw.io loads one script, no imports). `dist/` is committed (rebuild it before committing source changes).
 - `npm test` — all tests (`node --test test/*.test.js`; Node's built-in runner). Single file: `node --test test/core.test.js`; single test: `node --test --test-name-pattern="round trip" test/*.test.js`.
 - `test/plugin.test.js` rebuilds `dist/` before running, so tests always exercise the real bundle.

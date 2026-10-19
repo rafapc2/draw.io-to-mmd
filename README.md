@@ -77,6 +77,8 @@ Editing the exported Mermaid and re-importing works: text, shapes, colors and li
 
 ## Develop
 
+Requires Node.js 22 or newer (`.nvmrc`).
+
 ```sh
 npm install
 npm run build    # bundle src/plugin.js → dist/drawio-mermaid.js
