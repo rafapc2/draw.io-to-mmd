@@ -1,0 +1,14 @@
+flowchart LR
+    A([Start]) --> B{Valid?}
+    B -->|yes| C[Process]
+    B -.->|no| D[(Error log)]
+    subgraph Backend [Backend services]
+        C --> E[[Worker]]
+        E --> F((Done))
+    end
+    D --x C
+    style A fill:#d5e8d4,stroke:#82b366,color:#1a3d1a
+    style D fill:#f8cecc,stroke:#b85450,stroke-width:2px
+    classDef hot fill:#fff2cc,stroke:#d6b656
+    class C,E hot
+    linkStyle 1 stroke:#2e7d32,stroke-width:2px

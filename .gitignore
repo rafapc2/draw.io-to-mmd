@@ -1,0 +1,16 @@
+# dependencies
+node_modules/
+
+# generated: standalone executables and sample-test output (regenerate with
+# `npm run build:bin` / `scripts/sample-test.sh <file.drawio>`)
+release/
+test-result/
+
+# local / OS / editor
+.DS_Store
+.claude/
+.idea/
+.vscode/
+*.log
+coverage/
+*.tmp

@@ -1,0 +1,60 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm test
+      - run: npm run build:bin
+      - uses: actions/upload-artifact@v4
+        with: { name: release, path: release/ }
+
+  smoke:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: macos-latest, bin: drawio-mermaid-darwin-arm64 }
+          - { os: macos-15-intel, bin: drawio-mermaid-darwin-x64 }
+          - { os: ubuntu-latest, bin: drawio-mermaid-linux-x64 }
+          - { os: ubuntu-24.04-arm, bin: drawio-mermaid-linux-arm64 }
+          - { os: windows-latest, bin: drawio-mermaid-windows-x64.exe }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: release, path: release }
+      - name: Run the real binary on this OS
+        shell: bash
+        run: |
+          chmod +x release/${{ matrix.bin }}
+          B=release/${{ matrix.bin }}
+          $B --version
+          $B to-mmd examples/sample02.drawio out.mmd
+          $B to-drawio out.mmd out.drawio
+          grep -q '^flowchart' out.mmd
+          grep -q '<mxfile' out.drawio
+
+  publish:
+    needs: smoke
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: release, path: release }
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
+          generate_release_notes: true

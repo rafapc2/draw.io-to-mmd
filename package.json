@@ -1,0 +1,27 @@
+{
+  "name": "drawio-mermaid",
+  "version": "0.1.0",
+  "description": "draw.io plugin: export native diagrams to Mermaid (keeping colors, sizes, shapes) and import Mermaid as native draw.io diagrams",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "drawio2mmd": "bin/drawio2mmd.js",
+    "mmd2drawio": "bin/mmd2drawio.js",
+    "drawio-mermaid": "bin/drawio-mermaid.js"
+  },
+  "scripts": {
+    "build": "esbuild src/plugin.js --bundle --format=iife --target=es2017 --outfile=dist/drawio-mermaid.js",
+    "test": "node --test test/",
+    "build:bin": "scripts/build-binaries.sh"
+  },
+  "devDependencies": {
+    "bun": "^1.4.3",
+    "esbuild": "^0.25.0",
+    "jsdom": "^26.0.0",
+    "mermaid": "^11.0.0",
+    "mxgraph": "^4.2.2"
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "^0.9.0"
+  }
+}

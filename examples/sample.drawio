@@ -1,0 +1,57 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="p1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" page="1" pageWidth="1169" pageHeight="827">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="start-1" value="Start" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1a3d1a;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="140" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="chk" value="&lt;b&gt;Check&lt;/b&gt;&lt;br&gt;order &amp;amp; stock" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="30" y="150" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="grp" value="Backend" style="swimlane;startSize=30;container=1;collapsible=0;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="120" width="340" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="api" value="API &quot;v2&quot;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" vertex="1" parent="grp">
+          <mxGeometry x="20" y="60" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="db" value="Orders DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="grp">
+          <mxGeometry x="200" y="50" width="100" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="end" value="Done" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeColor=default;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="150" width="90" height="90" as="geometry"/>
+        </mxCell>
+        <UserObject label="Queue" link="https://example.com/queue" id="tr">
+          <mxCell style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=light-dark(#e1d5e7,#333);strokeColor=#9673a6;" vertex="1" parent="1">
+            <mxGeometry x="40" y="330" width="150" height="50" as="geometry"/>
+          </mxCell>
+        </UserObject>
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="start-1" target="chk">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1l" value="go" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e1">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="yes" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;" edge="1" parent="1" source="chk" target="api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="" style="html=1;endArrow=classic;startArrow=classic;" edge="1" parent="grp" source="api" target="db">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="160" y="150"/></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="" style="html=1;dashed=1;endArrow=open;strokeColor=#ff0000;fontColor=#ff0000;" edge="1" parent="1" source="grp" target="end">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="700" y="100"/></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="" style="html=1;endArrow=none;strokeWidth=5;" edge="1" parent="1" source="chk" target="tr">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="" style="html=1;endArrow=cross;" edge="1" parent="1" source="tr" target="end">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="dangling" value="" style="html=1;" edge="1" parent="1" source="tr">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="300" y="400" as="targetPoint"/></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
